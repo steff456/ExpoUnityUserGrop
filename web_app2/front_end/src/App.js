@@ -1,12 +1,12 @@
+/*Try to do react imports before the local imports*/
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Header from './modules/header/header.js'
 import Content from './modules/content/content.js'
 import Auth from './modules/auth/auth.js'
 import logo from './logo.svg';
 import './App.css';
-
-import axios from 'axios';
 
 class App extends Component {
 
