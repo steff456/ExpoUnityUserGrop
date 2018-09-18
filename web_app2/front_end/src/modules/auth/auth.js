@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {Container, Row, Col, Button,Form, FormGroup, Label, Input} from 'reactstrap';
+
 import './auth.css';
 import axios from 'axios';
 
 class Popup extends React.Component {
-  constructor(props) {
+  /*You can change the sintaxis, and validate PropTypes*/
+  /*constructor(props) {
     super(props);
     this.state = {valueCorreo: '',
                   valuePass: ''};
@@ -13,7 +16,21 @@ class Popup extends React.Component {
     this.handleChangeCorreo = this.handleChangeCorreo.bind(this);
     this.handleChangePass = this.handleChangePass.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }*/
+  //Note that you need the import of PropTypes.
+  static propTypes = {
+    toggle_form: PropTypes.object.isRequired, // Not sure of datatypes for your app!
+    handleChangeCorreo = PropTypes.object.isRequired, // Not sure of datatypes for your app!
+    handleChangePass = PropTypes.object.isRequired, // Not sure of datatypes for your app!
+    handleSubmit = PropTypes.object.isRequired, // Not sure of datatypes for your app!
+  };
+  //Then you add an object for the state
+  state ={
+    valueCorreo: "", //Not sure of datatype!
+    valuePass: "", //Not sure of datatype!
   }
+  //This should work with the appropiate dataTypes! No need to use this.blablabla.bind()
+
   handleChangeCorreo(event) {
     this.setState({valueCorreo: event.target.value});
   }
@@ -44,7 +61,7 @@ class Popup extends React.Component {
       })
     }
 
-  //MACHETAZO NO SE INCLUYE ACA SINO EN PADRE
+  //MACHETAZO NO SE INCLUYE ACA SINO EN PADRE - what
     handleSubmit(event) {
 
     //fetch(`http://localhost:3001/participantes?correo=${this.state.valueCorreo}&pass=${this.state.valuePass}`,{mode:'no-cors'})
@@ -52,6 +69,7 @@ class Popup extends React.Component {
    // console.log('componentDidUpdate')
     //console.log(response)
    //})
+      //You can review the sintaxis for a promise! 
       event.preventDefault();
       axios.get('http://localhost:3001/participantes',{ params:{
         correo: this.state.valueCorreo,
@@ -108,6 +126,7 @@ class Popup extends React.Component {
 }
 
 class Auth extends Component {
+  /*The same of the other class! This can be changed to a new sintaxis that makes the code more readable!*/
   constructor(props) {
     super(props);
      this.togglePopup = this.togglePopup.bind(this);
