@@ -4,7 +4,10 @@ var router = express.Router();
 
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
-
+/* In here you can make a function that gets the collection from mongo db to avoid repeating the code in each functional case.
+Also a const with the value of the mongo database may be a good idea. I recommend you to search a cloudapp for the database
+instead of having it in localhost, for instance, https://mlab.com
+*/
 const findDocumentss = function(db, callback) {
   // Get the documents collection
   const collection = db.collection('consulta');
@@ -145,6 +148,8 @@ MongoClient.connect(url, function(err, client) {
  
 });
 }
+
+/* Excellent use of callback functions, reducing the number of nested callbacks makes the code more readable!*/
 
 /* GET home page. */
 router.get('/aplicaciones', function(req, res, next) {
